@@ -22,30 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
-
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Archetype;
-import org.spongepowered.api.data.persistence.DataBuilder;
-
-public interface EntityArchetype extends Archetype<EntitySnapshot> {
-
-    /**
-     * Creates a {@link Builder} to get {@link EntityArchetype}s.
-     *
-     * @return The new builder
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    EntityType getType();
-
-    interface Builder extends DataBuilder<EntityArchetype> {
-
-        Builder type(EntityType type);
-
-        Builder from(Entity entity);
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.world.schematic;

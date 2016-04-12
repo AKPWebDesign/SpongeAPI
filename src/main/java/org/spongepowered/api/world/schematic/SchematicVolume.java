@@ -22,30 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.world.schematic;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Archetype;
-import org.spongepowered.api.data.persistence.DataBuilder;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockArchetype;
+import org.spongepowered.api.entity.EntityArchetype;
+import org.spongepowered.api.world.extent.MutableBlockVolume;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
-public interface EntityArchetype extends Archetype<EntitySnapshot> {
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
 
-    /**
-     * Creates a {@link Builder} to get {@link EntityArchetype}s.
-     *
-     * @return The new builder
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+public interface SchematicVolume extends MutableBlockVolume {
+
+    Optional<BlockArchetype> getBlockArchetype(int x, int y, int z);
+
+    default Optional<BlockArchetype> getBlockArchetype(Vector3i position) {
+        return getBlockArchetype(position.getX(), position.getY(), position.getZ());
     }
 
-    EntityType getType();
+    Map<Vector3i, BlockArchetype> getBlockArchetypes();
 
-    interface Builder extends DataBuilder<EntityArchetype> {
+    Collection<EntityArchetype> getEntityArchetypes();
 
-        Builder type(EntityType type);
-
-        Builder from(Entity entity);
-    }
-
+    @Override
+    MutableBlockVolumeWorker<? extends SchematicVolume> getBlockWorker();
 }

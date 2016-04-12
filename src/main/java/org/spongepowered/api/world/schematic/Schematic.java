@@ -22,30 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.world.schematic;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Archetype;
-import org.spongepowered.api.data.persistence.DataBuilder;
+import java.util.Properties;
 
-public interface EntityArchetype extends Archetype<EntitySnapshot> {
+public interface Schematic extends SchematicVolume {
 
-    /**
-     * Creates a {@link Builder} to get {@link EntityArchetype}s.
-     *
-     * @return The new builder
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    EntityType getType();
-
-    interface Builder extends DataBuilder<EntityArchetype> {
-
-        Builder type(EntityType type);
-
-        Builder from(Entity entity);
-    }
-
+    Properties getMetadata();
 }
