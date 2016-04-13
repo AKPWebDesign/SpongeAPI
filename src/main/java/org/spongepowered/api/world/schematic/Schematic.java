@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world.schematic;
 
-import java.util.Properties;
+import org.spongepowered.api.data.DataContainer;
 
 public interface Schematic extends SchematicVolume {
 
-    Properties getMetadata();
+    DataContainer getMetadata();
 }
