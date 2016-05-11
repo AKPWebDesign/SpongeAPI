@@ -27,6 +27,9 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
 import org.spongepowered.api.entity.EntityArchetype;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
@@ -34,6 +37,12 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface ArchetypeVolume extends MutableBlockVolume {
+
+    Vector3i getOrigin();
+
+    void setOrigin(Vector3i origin);
+
+    void apply(Location<World> location, Cause cause);
 
     Optional<TileEntityArchetype> getBlockArchetype(int x, int y, int z);
 
@@ -47,4 +56,5 @@ public interface ArchetypeVolume extends MutableBlockVolume {
 
     @Override
     MutableBlockVolumeWorker<? extends ArchetypeVolume> getBlockWorker();
+
 }
