@@ -255,6 +255,8 @@ public interface GameRegistry {
      */
     Collection<Statistic> getStatistics(StatisticGroup statisticGroup);
 
+    void registerTeleporter(String teleporterClassName);
+
     /**
      * Gets the {@link Rotation} with the provided degrees.
      *
